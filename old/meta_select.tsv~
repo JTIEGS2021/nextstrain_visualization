@@ -1,1 +1,0 @@
-ncbiaccession, scientific_name, organism, target_acc, ncbi_strain,	biosample_create_date, fullasm_id, taxid,ncbi_serotype, bioproject_acc, sra_create_date, Run, sample_name, geo_loc_name ,ncbi_snp_cluster_code	cluster_target_acc, gencoll_acc, ncbi_country, ncbi_state, ncbi_sedric_iso_state_choropleth_id, ncbi_strain_2, Outbreak, extra, ncbi_submitteddate
