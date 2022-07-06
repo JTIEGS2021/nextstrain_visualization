@@ -1,0 +1,75 @@
+Jun-30 11:09:07.028 [main] DEBUG nextflow.cli.Launcher - $> nextflow run nxtstrn1.nf -profile conda
+Jun-30 11:09:07.195 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.4
+Jun-30 11:09:07.216 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/jacobtiegs/cdc1/meta2/nextflow.config
+Jun-30 11:09:07.216 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/jacobtiegs/cdc1/meta2/nextflow.config
+Jun-30 11:09:07.238 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `conda`
+Jun-30 11:09:07.794 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [conda]
+Jun-30 11:09:07.813 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declararion
+Jun-30 11:09:07.836 [main] INFO  nextflow.cli.CmdRun - Launching `nxtstrn1.nf` [nauseous_wilson] DSL2 - revision: 2d50732e52
+Jun-30 11:09:07.852 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/jacobtiegs/.nextflow/plugins; core-plugins: nf-amazon@1.7.2,nf-azure@0.13.2,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
+Jun-30 11:09:07.854 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-30 11:09:07.867 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-30 11:09:07.868 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-30 11:09:07.872 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-30 11:09:07.882 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-30 11:09:07.947 [main] DEBUG nextflow.Session - Session uuid: e8e8e0fc-ea82-4221-a170-429212523473
+Jun-30 11:09:07.947 [main] DEBUG nextflow.Session - Run name: nauseous_wilson
+Jun-30 11:09:07.948 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-30 11:09:07.985 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 22.04.4 build 5706
+  Created: 19-06-2022 20:51 UTC (15:51 CDT)
+  System: Mac OS X 10.16
+  Runtime: Groovy 3.0.10 on Java HotSpot(TM) 64-Bit Server VM 14+36-1461
+  Encoding: UTF-8 (UTF-8)
+  Process: 77281@Jacobs-MacBook-Pro-2.local [192.168.1.100]
+  CPUs: 8 - Mem: 8 GB (50.2 MB) - Swap: 6 GB (784.5 MB)
+Jun-30 11:09:07.997 [main] DEBUG nextflow.Session - Work-dir: /Users/jacobtiegs/cdc1/meta2/work [Mac OS X]
+Jun-30 11:09:07.997 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/jacobtiegs/cdc1/meta2/bin
+Jun-30 11:09:08.008 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-30 11:09:08.021 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jun-30 11:09:08.038 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jun-30 11:09:08.052 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Jun-30 11:09:08.136 [main] DEBUG nextflow.Session - Session start invoked
+Jun-30 11:09:08.542 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-30 11:09:08.657 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 11:09:08.657 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 11:09:08.663 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jun-30 11:09:08.670 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jun-30 11:09:08.756 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 11:09:08.756 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 11:09:08.763 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 11:09:08.763 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 11:09:08.767 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 11:09:08.767 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 11:09:08.771 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 11:09:08.771 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 11:09:08.775 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: aug_refine, get_cols, aug_traits, meta_merge, aug_export
+Jun-30 11:09:08.776 [main] DEBUG nextflow.Session - Ignite dataflow network (10)
+Jun-30 11:09:08.784 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > meta_merge
+Jun-30 11:09:08.785 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > aug_refine
+Jun-30 11:09:08.786 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > get_cols
+Jun-30 11:09:08.787 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > aug_traits
+Jun-30 11:09:08.787 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > aug_export
+Jun-30 11:09:08.787 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-30 11:09:08.788 [main] DEBUG nextflow.Session - Session await
+Jun-30 11:09:08.887 [Actor Thread 6] DEBUG nextflow.conda.CondaCache - conda found local env for environment=nextstrain; path=/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409
+Jun-30 11:09:08.954 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 11:09:08.960 [Task submitter] INFO  nextflow.Session - [6a/15562f] Submitted process > aug_refine (1)
+Jun-30 11:09:08.967 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 11:09:08.967 [Task submitter] INFO  nextflow.Session - [ab/7f3a94] Submitted process > meta_merge (1)
+Jun-30 11:09:11.640 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: meta_merge (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/ab/7f3a94bdd353cedd4df0d45b3ff3b3]
+Jun-30 11:09:11.654 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 11:09:11.654 [Task submitter] INFO  nextflow.Session - [5a/6f891f] Submitted process > get_cols (1)
+Jun-30 11:09:12.831 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: aug_refine (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/6a/15562f5a63986cee835ac5b9fcc023]
+Jun-30 11:09:13.165 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: get_cols (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/5a/6f891fbe03e075e4658d8219a76cea]
+Jun-30 11:09:13.178 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 11:09:13.179 [Task submitter] INFO  nextflow.Session - [c0/138c2e] Submitted process > aug_traits (1)
+Jun-30 11:09:31.946 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: aug_traits (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/c0/138c2e42f0ea3c5b7f1015c9003aea]
+Jun-30 11:09:31.955 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 11:09:31.955 [Task submitter] INFO  nextflow.Session - [2e/8f289b] Submitted process > aug_export (1)
+Jun-30 11:09:34.458 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: aug_export (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/2e/8f289bb02982a0e854ebd2fd9f8ab5]
+Jun-30 11:09:34.461 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-30 11:09:34.463 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-30 11:09:34.473 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=5; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=29s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=0; ]
+Jun-30 11:09:36.419 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jun-30 11:09:36.445 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

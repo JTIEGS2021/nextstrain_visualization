@@ -1,0 +1,15 @@
+import pandas as pd
+
+f = open("./outbreak_plus_ncbi_meta.csv")
+
+meta = pd.read_csv("./outbreak_plus_ncbi_meta.csv")
+
+meta.columns.tolist()
+
+meta2 = meta.dropna(axis=1, how="all")
+
+meta2.columns.tolist()
+
+meta2.rename(columns={"Run":"name"})
+
+mea

@@ -1,0 +1,8 @@
+name: nextstrain
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - augur
+prefix: /Users/jacobtiegs/opt/anaconda3/envs/nextstrain

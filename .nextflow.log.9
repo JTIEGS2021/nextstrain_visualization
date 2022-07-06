@@ -1,0 +1,171 @@
+Jun-30 09:35:37.143 [main] DEBUG nextflow.cli.Launcher - $> nextflow run nxtstrn1.nf -profile conda
+Jun-30 09:35:37.287 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.4
+Jun-30 09:35:37.312 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/jacobtiegs/cdc1/meta2/nextflow.config
+Jun-30 09:35:37.312 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/jacobtiegs/cdc1/meta2/nextflow.config
+Jun-30 09:35:37.338 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `conda`
+Jun-30 09:35:37.995 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [conda]
+Jun-30 09:35:38.018 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declararion
+Jun-30 09:35:38.042 [main] INFO  nextflow.cli.CmdRun - Launching `nxtstrn1.nf` [backstabbing_watson] DSL2 - revision: ab2f1e1475
+Jun-30 09:35:38.058 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/jacobtiegs/.nextflow/plugins; core-plugins: nf-amazon@1.7.2,nf-azure@0.13.2,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
+Jun-30 09:35:38.060 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-30 09:35:38.075 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-30 09:35:38.076 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-30 09:35:38.082 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-30 09:35:38.093 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-30 09:35:38.193 [main] DEBUG nextflow.Session - Session uuid: 4c5d08d6-5874-4943-b644-38a525f2d224
+Jun-30 09:35:38.193 [main] DEBUG nextflow.Session - Run name: backstabbing_watson
+Jun-30 09:35:38.194 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-30 09:35:38.384 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 22.04.4 build 5706
+  Created: 19-06-2022 20:51 UTC (15:51 CDT)
+  System: Mac OS X 10.16
+  Runtime: Groovy 3.0.10 on Java HotSpot(TM) 64-Bit Server VM 14+36-1461
+  Encoding: UTF-8 (UTF-8)
+  Process: 74403@Jacobs-MacBook-Pro-2.local [192.168.1.100]
+  CPUs: 8 - Mem: 8 GB (22.2 MB) - Swap: 6 GB (755 MB)
+Jun-30 09:35:38.397 [main] DEBUG nextflow.Session - Work-dir: /Users/jacobtiegs/cdc1/meta2/work [Mac OS X]
+Jun-30 09:35:38.398 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/jacobtiegs/cdc1/meta2/bin
+Jun-30 09:35:38.410 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-30 09:35:38.424 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jun-30 09:35:38.444 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jun-30 09:35:38.462 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Jun-30 09:35:38.565 [main] DEBUG nextflow.Session - Session start invoked
+Jun-30 09:35:39.099 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-30 09:35:39.225 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 09:35:39.226 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 09:35:39.231 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jun-30 09:35:39.239 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jun-30 09:35:39.330 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 09:35:39.330 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 09:35:39.336 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 09:35:39.336 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 09:35:39.342 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 09:35:39.342 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 09:35:39.373 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-30 09:35:39.373 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-30 09:35:39.376 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: aug_refine, get_cols, aug_traits, meta_merge, aug_export
+Jun-30 09:35:39.377 [main] DEBUG nextflow.Session - Ignite dataflow network (10)
+Jun-30 09:35:39.386 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > meta_merge
+Jun-30 09:35:39.387 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > aug_refine
+Jun-30 09:35:39.387 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > get_cols
+Jun-30 09:35:39.387 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > aug_traits
+Jun-30 09:35:39.388 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > aug_export
+Jun-30 09:35:39.388 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-30 09:35:39.388 [main] DEBUG nextflow.Session - Session await
+Jun-30 09:35:39.483 [Actor Thread 8] DEBUG nextflow.conda.CondaCache - conda found local env for environment=nextstrain; path=/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409
+Jun-30 09:35:39.545 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 09:35:39.549 [Task submitter] INFO  nextflow.Session - [88/86e4ed] Submitted process > aug_refine (1)
+Jun-30 09:35:39.555 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 09:35:39.556 [Task submitter] INFO  nextflow.Session - [9e/973ea1] Submitted process > meta_merge (1)
+Jun-30 09:35:42.266 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: meta_merge (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/9e/973ea128d2129232aa18d37f61b7d3]
+Jun-30 09:35:42.279 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 09:35:42.280 [Task submitter] INFO  nextflow.Session - [80/5e331c] Submitted process > get_cols (1)
+Jun-30 09:35:43.368 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: aug_refine (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/88/86e4edeaaa545f8d675f9a1af811a6]
+Jun-30 09:35:43.689 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: get_cols (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/80/5e331cff2a7013aa1c48c371d9083f]
+Jun-30 09:35:43.698 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-30 09:35:43.698 [Task submitter] INFO  nextflow.Session - [5a/8dc39e] Submitted process > aug_traits (1)
+Jun-30 09:36:03.238 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: aug_traits (1); status: COMPLETED; exit: 2; error: -; workDir: /Users/jacobtiegs/cdc1/meta2/work/5a/8dc39e2470e6884859b8979f3c3939]
+Jun-30 09:36:03.270 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'aug_traits (1)'
+
+Caused by:
+  Process `aug_traits (1)` terminated with an error exit status (2)
+
+Command executed:
+
+  augur traits --tree refine_tree.nwk --metadata meta_out.csv  --output-node-data meta_traits.json --columns [name predicted_antigenic_profile predicted_serotype gene product resistance ncbiaccession scientific_name organism target_acc ncbi_strain fullasm_id taxid ncbi_serotype bioproject_acc run name geo_loc_name ncbi_snp_cluster_code cluster_target_acc gencoll_acc ncbi_country ncbi_state ncbi_sedric_iso_state_choropleth_id ncbi_strain_2 outbreak extra ncbi_submitteddate]
+
+Command exit status:
+  2
+
+Command output:
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+  Assigned discrete traits to 82 out of 82 taxa.
+  
+  NOTE: previous versions (<0.7.0) of this command made a 'short-branch
+  length assumption. TreeTime now optimizes the overall rate numerically
+  and thus allows for long branches along which multiple changes
+  accumulated. This is expected to affect estimates of the overall rate
+  while leaving the relative rates mostly unchanged.
+
+Command error:
+  WARNING: no states found for discrete state reconstruction.
+  WARNING: only one state found for discrete state reconstruction: ["aac(6')-Iaa_1"]
+  WARNING: only one state found for discrete state reconstruction: ["aac(6')-Iaa"]
+  WARNING: only one state found for discrete state reconstruction: ['Amikacin;Tobramycin']
+  WARNING: no states found for discrete state reconstruction.
+  WARNING: only one state found for discrete state reconstruction: ['USA']
+  WARNING: no states found for discrete state reconstruction.
+  Traceback (most recent call last):
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/site-packages/augur/__init__.py", line 81, in run
+      return args.__command__.run(args)
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/site-packages/augur/traits.py", line 206, in run
+      write_json({"models":models, "nodes":mugration_states},out_name)
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/site-packages/augur/utils.py", line 132, in write_json
+      json.dump(data, handle, indent=indent, sort_keys=sort_keys)
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/json/__init__.py", line 179, in dump
+      for chunk in iterable:
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/json/encoder.py", line 431, in _iterencode
+      yield from _iterencode_dict(o, _current_indent_level)
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/json/encoder.py", line 405, in _iterencode_dict
+      yield from chunks
+    File "/Users/jacobtiegs/cdc1/meta2/work/conda/env-7cfec3496c1475789fe211df1ded1409/lib/python3.7/json/encoder.py", line 353, in _iterencode_dict
+      items = sorted(dct.items(), key=lambda kv: kv[0])
+  TypeError: '<' not supported between instances of 'NoneType' and 'str'
+  
+  
+  An error occurred (see above) that has not been properly handled by Augur.
+  To report this, please open a new issue including the original command and the error above:
+      <https://github.com/nextstrain/augur/issues/new/choose>
+
+Work dir:
+  /Users/jacobtiegs/cdc1/meta2/work/5a/8dc39e2470e6884859b8979f3c3939
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Jun-30 09:36:03.274 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-30 09:36:03.274 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `aug_traits (1)` terminated with an error exit status (2)
+Jun-30 09:36:03.289 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-30 09:36:03.299 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=3; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=7.6s; failedDuration=19.4s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=0; ]
+Jun-30 09:36:04.316 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jun-30 09:36:04.338 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

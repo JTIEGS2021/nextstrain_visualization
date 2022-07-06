@@ -1,0 +1,83 @@
+Sample name,Predicted antigenic profile,Predicted serotype,GENE,PRODUCT,RESISTANCE
+SRR6325217,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6325220,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6325331,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6330673,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6330678,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6330680,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6330681,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6330682,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6330683,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6353955,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6353964,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6359128,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6359133,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6359135,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6359144,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6359152,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6359153,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6373410,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6373458,"-:i:1,2","I -:i:1,2",aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6373585,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6380933,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6380934,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6386298,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6413643,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6440230,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6440520,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6440561,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6457906,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6457918,"8:e,h:1,2",Newport,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6481183,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6489981,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6491254,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6515208,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6515212,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6604491,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6650919,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6663628,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6670266,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6670279,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6670287,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6670295,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6676504,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6682038,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6750513,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6786489,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6786494,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6786495,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6786505,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6872082,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6872085,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6872089,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6879303,"-:i:1,2","I -:i:1,2",aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6879566,-:z29:-,I -:z29:-,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6881311,"4:i:1,2",Typhimurium,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6903121,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6926872,-:z29:-,I -:z29:-,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6940838,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR6945236,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7015196,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7073595,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7093180,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7093294,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7140266,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7140363,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7153388,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7170560,-:z29:-,I -:z29:-,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7182405,13:z29:-,Agoueve or Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7218877,-:z29:-,I -:z29:-,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7269467,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7300269,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7429470,13:z29:-,Agoueve or Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7456622,-:z29:-,I -:z29:-,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR7518636,-:z29:-,I -:z29:-,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR8781001,13:z29:-,Cubana,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR8882088,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR8899204,"-:l,v:1,2","I -:l,v:1,2",aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR8926753,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR9029126,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR9040362,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR9106301,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR9283172,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
+SRR9283178,"7:l,v:1,2",Concord,aac(6')-Iaa_1,aac(6')-Iaa,Amikacin;Tobramycin
