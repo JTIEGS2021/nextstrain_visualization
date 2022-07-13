@@ -52,11 +52,11 @@ process aug_refine {
 
     """
     augur refine \
-    	  --tree $nwk \
-   	  --output-tree refine_tree.nwk \
-	  --output-node-data refine_node.json \
-	  --keep-root \
-	  --seed 1234
+    	--tree $nwk \
+   	  	--output-tree refine_tree.nwk \
+	  	--output-node-data refine_node.json \
+	  	--keep-root \
+	  	--seed 1234
     """
 }
 

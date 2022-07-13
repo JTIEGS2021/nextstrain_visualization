@@ -1,5 +1,6 @@
 import pandas as pd
 import argparse
+from datetime import datetime
 
 # Read in data
 def get_data(ncbi, aspen, select):
@@ -33,6 +34,26 @@ def fix_name(meta_filt):
     meta_filt.rename(columns={"sample_name":"name"}, inplace=True)
 
 
+# Num date from date function
+def num_date_from_date(dt):
+   # dt = datetime.strptime(date, '%Y-%m-%d')
+    year_dec = dt.timetuple().tm_yday / datetime(dt.year,12,31).timetuple().tm_yday
+    num_date = dt.year + year_dec
+    return num_date
+
+# Add num_date to dataframe
+def get_num_date(meta_filt):
+    date_list = meta_filt[[s for s in meta_filt.columns.tolist() if "date" in s]].columns.tolist()
+    date_name = date_list[0]
+    # datel = meta_filt[date]
+    meta_filt["num_date"] = meta_filt[date_name].apply(num_date_from_date)
+    return(meta_filt)
+    
+
+
+
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--meta_ncbi", type=str, required=True)
@@ -51,6 +72,8 @@ def main():
     fix_date(meta_filt)
     # fix names
     fix_name(meta_filt)
+    # meta filt
+    meta_filt = get_num_date(meta_filt)
     # write file
     meta_filt.to_csv("./meta_out.csv")
 
