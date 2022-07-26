@@ -1,0 +1,495 @@
+#!/usr/bin/env nextflow
+//params.reads = params.input.fastq_path+'*{_1,_2}*.fastq.gz'
+// params.reads = params.input.fastq_path+'*{_1,_2}*.fastq'
+params.ref = "$baseDir/ref/TruSeq3-PE.fa"
+params.ref2 = "$baseDir/ref/GCF_000006945.2_ASM694v2_genomic.fna"
+params.ref3 = "$baseDir/ref/midas_exports.sh"
+params.ref4 = "$baseDir/ref/outbreaks.txt"
+params.ref5 = "$baseDir/ref/outbreak_plus_ncbi_meta.csv"
+params.ref6 = "$baseDir/ref/meta_select.tsv"
+params.ref7 = "$baseDir/ref/addl_"
+// fastq_path = Channel.fromFilePairs(params.reads, size: -1)
+//fastq_path2 = Channel.fromFilePairs(params.reads2, size: -1)
+//fasta_path = Channel.fromPath(params.input.fasta_path)
+out_path = Channel.fromPath(params.output.folder)
+pyscripts="$baseDir/pyscripts"
+
+
+// read in and process outbreak text file
+File fh1 = new File(params.ref4)
+text = fh1.getText('UTF-8')
+
+def result = []
+text.splitEachLine("\n") {
+    result << it  // it is list with result of split on n\
+}
+
+result = result.flatten()
+
+// result = result[0,1]
+
+    // autoMounts = true
+
+srr_ids = Channel.fromList(result)
+
+// srr_ids[0,1,2,2,3,4,5,6,7,8,9,10,11,12].into{srr_ids2}
+
+srr_ids.into{srr_download; srr_metadata}
+
+process download_srr {
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+    publishDir "$params.output.folder/$params.output.download_srr_dir", pattern: "*", mode : "copy"
+    input:
+        val(pair_id) from srr_download
+    output:
+		tuple val(pair_id), path("${pair_id}_R1.fastq"), path("${pair_id}_R2.fastq") into comb_out
+
+    script:
+        
+        """
+		/apps/x86_64/sratoolkit/2.11.3/sratoolkit.2.11.3-centos_linux64/bin/fastq-dump -I --split-files ${pair_id}
+        mv ${pair_id}_1.fastq ${pair_id}_R1.fastq
+        mv ${pair_id}_2.fastq ${pair_id}_R2.fastq
+        """
+}
+
+
+
+comb_out.into{preqc_path; shovill_input}
+
+process preFastQC {
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+    publishDir "$params.output.folder/$params.output.preFastQC_dir/${sample}", mode : "copy"
+    input:
+        set val(sample), path(read_one), path(read_two) from preqc_path
+    
+    output:
+        tuple val(sample), path("*") into preqc_out
+    
+    script:
+        """
+        fastqc --extract -f fastq -o ./ -t $task.cpus ${read_one} ${read_two}
+        """
+}
+
+
+process shovill {
+	cpus 8
+	memory '16 GB'
+  	executor 'sge'
+	penv 'smp'
+	errorStrategy 'retry'
+	maxRetries 20
+
+    publishDir "$params.output.folder/$params.output.shovill_dir/${sample}", mode : "copy"
+	input:
+        set val(sample), path(read_one), path(read_two) from shovill_input
+    
+    output:
+        tuple val(sample), path("${sample}_contigs.fasta") into shovill_out
+        set val(sample), path("${sample}_R1.fq.gz"), path("${sample}_R2.fq.gz") into trim_out
+    
+    script:
+        """
+		shovill --outdir ${sample} --R1 ${read_one} --R2 ${read_two} --trim --keepfiles s,1,2,3 --opts "--cov-cutoff 5 -t 8 --tmp-dir /tmp --disable-gzip-output"
+		mv ${sample}/contigs.fa ${sample}_contigs.fasta
+        mv ${sample}/R1.fq.gz ${sample}_R1.fq.gz
+        mv ${sample}/R2.fq.gz ${sample}_R2.fq.gz
+		"""
+}
+
+shovill_out.into{shovill_out1; resfinder_in; seqsero_in; shovill_out4}
+
+trim_out.into{postqc_path; quast_path; midas_path; pre_lyveset_path}
+
+// pre_lyveset_path.view()
+
+process lyveset_rename {
+
+    publishDir "$params.output.folder/$params.output.lyveset_renamed_dir/", pattern: "*", mode : "copy"
+
+    input:
+        set val(sample), path(read_one), path(read_two) from pre_lyveset_path
+    
+    output:
+        tuple val(sample), path("${sample}_1.fq.gz"), path("${sample}_2.fq.gz") into lyveset_path
+
+    script:
+        """
+        mv ${read_one} ${sample}_1.fq.gz 
+		mv ${read_two} ${sample}_2.fq.gz
+        """
+
+}
+
+Channel
+    lyveset_path.flatten()
+    .filter( ~ /.*.fq.gz.*/)
+    .collect()
+    // .view()
+    .set{pre_lyveset_path_flattened}
+	// pre_lyveset_path_flattened.view()
+
+
+process lyveset_process {
+	cpus 16
+	memory '16 GB'
+  	executor 'local'
+
+    publishDir "$params.output.folder/$params.output.lyveset_process_dir/", pattern: "*", mode : "copy"
+													
+    input:
+        path("*") from pre_lyveset_path_flattened
+        path ref from params.ref2
+    
+    output:
+        path("lyve_project/msa/out.pairwiseMatrix.tsv") into lyveset_output
+
+    script:
+        """
+		module load Lyve-SET/1.1.4f
+        set_manage.pl --create lyve_project
+	    shuffleSplitReads.pl --numcpus 8 -o interleaved *.fq.gz
+        mv interleaved/*.fastq.gz lyve_project/reads/
+        rmdir interleaved
+        mkdir lyve_project/ref/
+        cp ${ref} lyve_project/ref/
+        launch_set.pl --numcpus 4 --queue all.q --numnodes 30 --presets salmonella_enterica -ref lyve_project/ref/GCF_000006945.2_ASM694v2_genomic.fna lyve_project
+        """
+}
+
+process midas {
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+    publishDir "$params.output.folder/$params.output.midas_dir/", mode : "copy"
+    input:
+        set val(sample), path(read_one), path(read_two) from midas_path
+		path ref from params.ref3
+    
+    output:
+        tuple val(sample), path("*") into midas_out
+    
+    script:
+        """
+		MIDAS_DB=\${MIDAS_DB:-}
+		export MIDAS_DB=/scicomp/home-pure/sza8/programs/midas/MIDAS-master/midas_db/MIDAS/midas_db_v1.2
+        run_midas.py species ${sample} -1 ${read_one} -2 ${read_two}
+        """
+}
+
+		// PYTHONPATH=\${PYTHONPATH:-}
+		// export PYTHONPATH=\$PYTHONPATH:/scicomp/home-pure/sza8/programs/midas/MIDAS-master
+		// PATH=\${PATH:-}
+		// export PATH=\$PATH:/scicomp/home-pure/sza8/programs/midas/MIDAS-master/scripts
+
+
+process postFastQC {
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+    publishDir "$params.output.folder/$params.output.postFastQC_dir/${sample}", mode : "copy"
+    input:
+        set val(sample), path(read_one), path(read_two) from postqc_path
+    
+    output:
+        tuple val(sample), path("*") into postqc_out
+    
+    script:
+        """
+        fastqc --extract -f fastq -o ./ -t $task.cpus ${read_one} ${read_two}
+        """
+}
+
+
+
+process quast{
+	cpus 4
+	memory '6 GB'
+  	executor 'sge'
+	penv 'smp'
+	errorStrategy 'retry'
+	// conda "$baseDir/envs/quast.yml"
+	publishDir "$params.output.folder/$params.output.quast_dir/${sample}", mode : "copy"
+	input:
+		tuple val(sample), path("${sample}_contigs.fasta") from shovill_out1
+		set val(sample), path(read_one), path(read_two) from quast_path
+		path ref from params.ref2
+
+		
+	output:
+		tuple val(sample), path("*") into quast_out
+
+	script:
+	"""
+	quast.py ${sample}_contigs.fasta -1 ${read_one} -2 ${read_two} -o ${sample} -r ${ref}
+	mv ${sample}/report.html ${sample}_report.html
+	"""
+	
+}
+
+
+Channel
+    resfinder_in.flatten()
+    .filter( ~ /.*.contigs.*/)
+    .collect()
+    // .view()
+    .set{resfinder_collected}
+	// resfinder_collected.view()
+
+
+process resfinder{
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+	publishDir "$params.output.folder/$params.output.resfinder_dir", mode : "copy"
+	input:
+		path("*") from resfinder_collected
+
+	output:
+		path("*") into resfinder_final
+
+	script:
+	"""
+	abricate --db resfinder *_contigs.fasta > res_finder_results
+	"""
+}
+
+
+
+// Channel
+//     seqsero_in.flatten()
+//     .filter( ~ /.*.contigs.*/)
+//     .collect()
+//     // .view()
+//     .set{resfinder_collected}
+// 	// resfinder_collected.view()
+
+
+
+process seqsero{
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+	publishDir "$params.output.folder/$params.output.seqsero_dir", mode : "copy"
+	input:
+		tuple val(sample), path("${sample}_contigs.fasta") from seqsero_in
+
+	output:
+		path("*") into seqsero_out
+		
+	script:
+	"""
+	SeqSero2_package.py -t 4 -i ${sample}_contigs.fasta -d ${sample} -p 10 -m k
+	"""
+
+}
+
+Channel
+    seqsero_out.flatten()
+    .collect()
+    .set{seqsero_combine}
+
+
+process seqsero_combined{
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+    // conda "$baseDir/envs/pandas.yml"
+	publishDir "$params.output.folder/$params.output.seqsero_combined", mode : "copy"
+	input:
+		path("*") from seqsero_combine
+
+	output:
+		path("*") into seqsero_final
+		
+	script:
+	"""
+	python $baseDir/scripts/seqsero_combine.py
+	"""
+
+}
+
+
+process mummer{
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+	publishDir "$params.output.folder/$params.output.mummer_dir/${sample}", mode : "copy"
+	input:
+		tuple val(sample), path("${sample}_contigs.fasta") from shovill_out4
+		path ref from params.ref2
+
+	output:
+		path("${sample}.delta")
+
+	script:
+	"""
+	nucmer -p ${sample} ${sample}_contigs.fasta ${ref}
+	"""
+}	
+
+
+process UPGMA{
+    // conda "$baseDir/envs/qiime1_py27.yml"
+    publishDir "$params.output.folder/$params.output.UPGMA_dir/", mode: "copy"
+
+    input:
+        path distMs from lyveset_output
+
+    output:
+        file("${distMs}.tre") into tree_files
+
+    script:
+    """
+	python $baseDir/scripts/UPGMA_preprocess.py
+    upgma_cluster.py -i pairwiseMatrix.csv -o ${distMs}.tre
+    """
+}
+
+
+// // Have tree file, resfinder data in single CSV, and seqsero data in single CSV. Need to get NCBI metadata for outbreak input SRR IDs
+
+// // Input channel for SRR IDs, srr_metadata
+
+process meta_combine{
+	cpus 1
+	memory '2 GB'
+  	executor 'sge'
+	penv 'smp'
+	publishDir "$params.output.folder/$params.output.meta_combined", mode : "copy"
+	input:
+	    path("*") from seqsero_final
+        path("*") from resfinder_final
+
+	output:
+		path("res_seqo_combined.csv") into meta_combined
+		
+	script:
+	"""
+	python $baseDir/scripts/combine_meta.py
+	"""
+
+}
+
+process meta_merge {
+	publishDir "$params.output.folder/$params.output.meta_merged", mode : "copy"
+
+    input:
+	path get_meta_param1 from meta_combined
+	path ref5 from params.ref5
+	path ref6 from params.ref6
+
+    output:
+    path("meta_out.csv") into meta_merged
+
+    """
+	python $baseDir/scripts/get_meta.py --meta_ncbi $ref5 --meta_aspen $get_meta_param1 --meta_select $ref6
+	"""
+}
+
+process aug_refine {
+	publishDir "$params.output.folder/$params.output.aug_refined", mode : "copy"
+	
+    input:
+    path ("*") from tree_files
+
+    output:
+    path("refine_tree*") into tree
+    path("refine_node*") into node
+    
+
+    """
+    augur refine \
+    	  --tree * \
+   	  --output-tree refine_tree.nwk \
+	  --output-node-data refine_node.json \
+	  --keep-root \
+	  --seed 1234
+    """
+}
+
+process get_cols {
+	publishDir "$params.output.folder/$params.output.get_cols", mode : "copy"
+
+	input:
+	path("meta_out.csv") from meta_merged
+
+	output:
+	path("cols.csv") into cols
+	
+	'''
+	cat meta_out.csv | head -1 | tr "," " " | tr -d "\\n" | sed "s/^[[:space:]]*//" | sed 's/name //' >> cols.csv
+	'''
+}
+
+process aug_traits {
+	publishDir "$params.output.folder/$params.output.aug_traits", mode : "copy"
+	
+	input:
+	val tree_path from tree
+	val col_path from cols
+	val met_merged_out from meta_merged
+
+	output:
+	path("meta_traits.json") into traits
+
+	"""
+	columns_to_keep="\$(cat $col_path)"
+	augur traits --tree $tree_path --metadata $met_merged_out  --output-node-data meta_traits.json --columns \${columns_to_keep}
+	"""
+
+}
+
+process aug_export {
+    publishDir "$params.output.folder/$params.output.aug_export", mode : "copy"
+
+    input:
+    val tree_path from tree
+    path node_path from node
+	path traits_path from traits
+	val col_path from cols
+	val met_merged_out from meta_merged
+
+    output:
+    path("export_out2.json") into augur_out
+    
+    
+
+    """
+	columns_to_keep="\$(cat $col_path)"
+    augur export v2 \
+    --tree $tree_path \
+    --metadata $met_merged_out \
+    --node-data $node_path $traits_path \
+	--color-by-metadata \${columns_to_keep} \
+    --output export_out2.json
+    """
+}
+
+process json_modify {
+    publishDir "$params.output.folder/$params.output.json_modify", mode : "copy"
+
+    input:
+    path("export_out.json") from augur_out
+	val met_merged_out from meta_merged
+
+    output:
+    path("with_dates.json") into end
+
+    """
+    python $baseDir/scripts/json_adjust.py --json export_out.json --meta ${met_merged_out} --json_out with_dates.json
+    """
+}

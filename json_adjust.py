@@ -28,7 +28,7 @@ def get_data(json, meta):
     """
     
     # load meta_out 
-    meta1 = pd.read_csv(meta)
+    meta1 = meta
     # get date_range from metadata
     date_range = [meta1["num_date"].min(), meta1["num_date"].max()]
     # load json
@@ -39,7 +39,13 @@ def get_data(json, meta):
     # return date_range and json node
     return (date_range, data, node)
 
+# loads data if meta has no num_date
+def get_data2(json):
+    f = open(json)
+    data = js.load(f)
+    return(data)
 
+    
 def get_leaf_struc(node):
     """
     Finds first leaf node and captures a copy of the node_attrs structure
@@ -65,7 +71,6 @@ def get_leaf_struc(node):
         else:
             return k["node_attrs"]
         break
-
 
 
 def num_date_from_date(dt):
@@ -155,7 +160,7 @@ def parse_nested_node(node, node_ord):
             # add num_date to dict
             l["num_date"] = {"value": date}
             # reorder dict
-            l = {k: l[k] for k in node_ord}
+            # l = {k: l[k] for k in node_ord}
             # set updated node_attrs to the tree dict
             k["node_attrs"] = l
             # recursion
@@ -175,7 +180,7 @@ def parse_first_node(node, node_ord):
     div = node["node_attrs"]["div"]
     date = date_range[0] + ((div/div_max) * (date_range[1]-date_range[0])) - (date_range[1]-date_range[0])
     l["num_date"] = {"value": date}
-    l = {k: l[k] for k in node_ord}
+    # l = {k: l[k] for k in node_ord}
     node["node_attrs"] = l
     
 
@@ -225,21 +230,36 @@ def main():
     parser.add_argument("--meta", type=str, required=True)
     parser.add_argument("--json_out", type=str, required=True)
 
+
     args=parser.parse_args()
     global date_range, div_max
 
+    # read in meta csv first to check if num_date exists
+    meta = pd.read_csv(args.meta)
+    if "num_date" in meta.columns:
+        print("num date exists")
+        # get data
+        date_range, data, node = get_data(args.json, meta)
+        # get json leaf node structure (outline)
+        node_ord = list(get_leaf_struc(node["children"]).keys())
+        # get div_max (div_dict can be ignored)
+        div_max = parse_div_max(node, 0)
 
-    # get data
-    date_range, data, node = get_data(args.json, args.meta)
-    # get json leaf node structure (outline)
-    node_ord = list(get_leaf_struc(node["children"]).keys())
-    # get div_max (div_dict can be ignored)
-    div_max = parse_div_max(node, 0)
-    # parse nodes
-    parse_nodes(node, node_ord)
-    # write json output
-    write_json_out(data, args.json_out)
-
+        if div_max == 0:
+            div_max = 1
+        
+        # parse nodes
+        parse_nodes(node, node_ord)
+        # write json output
+        write_json_out(data, args.json_out)
+    else:
+        print("num_date does not exist, returning json")
+        # get data
+        data = get_data2(args.json)
+        # write json_output
+        write_json_out(data, args.json_out)
+       
+    
     
 if __name__ == "__main__":
     main()
